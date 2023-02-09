@@ -1,6 +1,7 @@
 console.log('hello world')
 let message = document.querySelector('#message')
 
+
 const addMovie = evt => {
     evt.preventDefault()
     let inputField = document.querySelector("input")
@@ -20,19 +21,28 @@ const addMovie = evt => {
 }
 const deleteMovie = evt =>{
     event.target.parentNode.remove()
-    message.textContent = "Movie Deleted!"
+    message.textContent = event.target.parentNode.textContent + " deleted!"
+    return reveal
 } 
 const crossOffMovie = evt =>{
     event.target.classList.toggle('checked')
     if (event.target.classList.contains('checked')){
-        message.textContent = "Movie Watched!"
+        message.textContent = event.target.textContent + ' watched.'
 
     } else 
-        message.textContent = "Movie added back!"
+        message.textContent = event.target.textContent + " added back!"
     }
-
-
 
 const form = document.querySelector("form")
 
 form.addEventListener("submit",addMovie)
+
+const revealMessage = () =>{
+    message.classList.remove('hide')
+    setTimeout(hideMessage, 1000)
+
+}
+
+const hideMessage = ( ) =>{
+    message.classList.add('hide')
+}
